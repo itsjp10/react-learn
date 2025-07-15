@@ -1,17 +1,19 @@
 
-function Formulario({ name, email, message}){
+function Formulario({ name, email, message }) {
     return (
         <>
             <h1>Formulario children</h1>
             <form>
                 <label htmlFor="name">Nombre:</label>
-                <input value={name} type="text" id="name" name="name" />
+                <div>{name}</div>
+
                 <br />
                 <label htmlFor="email">Email:</label>
-                <input value={email} type="email" id="email" name="email" />
+                <div>{email}</div>
+
                 <br />
                 <label htmlFor="message">Mensaje:</label>
-                <textarea value={message} id="message" name="message"></textarea>
+                <div>{message}</div>
                 <br />
             </form>
         </>
