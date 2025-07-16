@@ -40,3 +40,43 @@
 .read-the-docs {
   color: #888;
 }
+
+
+form{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.Task{
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.checkmark {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%; /* Opcional, para un círculo */
+  background-color: green; /* Opcional, color de fondo */
+  position: relative;
+}
+
+.checkmark::after {
+  content: '\2713'; /* Código Unicode del visto bueno */
+  color: white; /* Color del visto bueno */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px; /* Tamaño del visto bueno */
+}
+
+.elemento::before {
+  content: "X"; /* Usa el carácter 'X' */
+  color: red; /* Color de la X */
+  font-size: 20px; /* Tamaño de la X */
+  /* Otros estilos para la X */
+}
