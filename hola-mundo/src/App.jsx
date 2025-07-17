@@ -16,6 +16,8 @@ function App() {
   const [isDone, setIsdone] = useState(false);
 
   const [tasks, setTasks] = useState([])
+  const [search, setSearch] = useState('')
+
 
   const changeName = () => {
     setPerson(person == "Mundo" ? "Jean" : "Mundo");
@@ -35,6 +37,8 @@ function App() {
     setTasks(newTasks);
   }
 
+  const resultados = tasks.filter(task => task[1].toLowerCase().includes(search.toLowerCase()))
+
   return (
     <>
       {/*primer proyecto*/}
@@ -50,6 +54,7 @@ function App() {
       {/*ListaTareas*/}
       <h1>Lista de tareas</h1>
       <div className='Tasks'>
+        <input className='searchBar' type="text" onChange={e => setSearch(e.target.value)} value={search}/>        
         <form>
           <label htmlFor="name">Nombre:</label>
           <input onChange={e => setName(e.target.value)} value={name} type="text" id="name" name="name" />
@@ -65,7 +70,7 @@ function App() {
         </form>
 
         <ul>
-          {tasks.map((task, i) => (
+          {resultados.map((task, i) => (
             <Tarea key={i} task={task} isDone={task[2]} eliminateTask={() => eliminateTask(i)} id={i}></Tarea>
           ))}
         </ul>
