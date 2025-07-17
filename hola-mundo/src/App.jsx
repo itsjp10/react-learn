@@ -55,7 +55,7 @@ function App() {
 
         <ul>
           {tasks.map((task, i) => (
-            <Tarea key={i} task={task}></Tarea>
+            <Tarea key={i} task={task} isDone={task[2]}></Tarea>
           ))}
         </ul>
       </div>
