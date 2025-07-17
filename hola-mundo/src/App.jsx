@@ -13,7 +13,7 @@ function App() {
 
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
-  const [isDone, setIsdone] = useState();
+  const [isDone, setIsdone] = useState(false);
 
   const [tasks, setTasks] = useState([])
 
@@ -21,8 +21,18 @@ function App() {
     setPerson(person == "Mundo" ? "Jean" : "Mundo");
   }
 
-  function createTask() {
+  const createTask = () => { //create the task and update the fields
+    console.log('creando task')
     setTasks([...tasks, [name, desc, isDone]])
+    setName('')
+    setDesc('')
+    setIsdone(false)
+  }
+
+  const eliminateTask = (id) =>{
+    console.log('eliminando task', id);
+    const newTasks = tasks.filter((_, index) => index !== id);
+    setTasks(newTasks);
   }
 
   return (
@@ -48,14 +58,15 @@ function App() {
           <input onChange={e => setDesc(e.target.value)} value={desc} type="text" id="description" name="description" />
           <br />
           <label htmlFor="isDone">¿Terminado?</label>
-          <input onChange={e => setIsdone(e.target.checked)} value={isDone} type="checkbox" id="isDone" name="isDone"></input>
+          <input onChange={e => setIsdone(e.target.checked)} checked={isDone} type="checkbox" id="isDone" name="isDone"></input>
+          {console.log(isDone)}
           <button type='button' onClick={createTask}>Crear tarea</button>
           <br />
         </form>
 
         <ul>
           {tasks.map((task, i) => (
-            <Tarea key={i} task={task} isDone={task[2]}></Tarea>
+            <Tarea key={i} task={task} isDone={task[2]} eliminateTask={() => eliminateTask(i)} id={i}></Tarea>
           ))}
         </ul>
       </div>
