@@ -1,26 +1,36 @@
 import './App.css'
 
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 function App() {
 
   const [isStopped, setIsStopped] = useState(true)
-  let [counter, setCounter] = useState(0 )
+  let [counter, setCounter] = useState(0)
+  const intervalRef = useRef(null)
 
-  function count(){
-    setCounter(counter + 1)
+  function count() {
+    setCounter(prev => prev + 1)
   }
 
-  useEffect(()=>{
-    setInterval(count, 1000)
+  useEffect(() => {
+    if (!isStopped) {
+      console.log('Starting interval')
+      intervalRef.current = setInterval(count, 1)
+    } else {
+      console.log('Stopping interval')
+      clearInterval(intervalRef.current)
+    }
+    return () => {
+      clearInterval(intervalRef.current)
+    }
   }, [isStopped])
 
   return (
     <>
       <div>
         <h1>Cronometro</h1>
-        <button type='button' onClick={()=>{setIsStopped(isStopped ? false : true)}}>{isStopped ? 'Iniciar' : 'Reanudar'}</button>
+        <button type='button' onClick={() => { setIsStopped(isStopped ? false : true) }}>{isStopped ? 'Iniciar' : 'Reanudar'}</button>
         <p>{counter}</p>
       </div>
     </>
