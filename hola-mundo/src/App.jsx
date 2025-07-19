@@ -1,49 +1,34 @@
 import './App.css'
-
-
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 
 function App() {
+  const [data, setData] = useState(null)
 
-  const [isStopped, setIsStopped] = useState(true)
-  let [counter, setCounter] = useState(0)
-  const intervalRef = useRef(null)
-  const [isDark, setIsDark] = useState(false)
-
-  function count() {
-    setCounter(prev => prev + 1)
+  const handleUsers = () => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(json => setData(json))
   }
 
-  function handleReiniciar(){
-    setIsStopped(true)
-    setCounter(0)
-  }
-
-  useEffect(() => {
-    if (!isStopped) {
-      console.log('Starting interval')
-      intervalRef.current = setInterval(count, 1)
-    } else {
-      console.log('Stopping interval')
-      clearInterval(intervalRef.current)
-    }
-    return () => {
-      clearInterval(intervalRef.current)
-    }
-  }, [isStopped])
-
-  //class for moon is bi bi-moon
-  //class for sun is bi bi-sun
 
   return (
     <>
-      <div className={isDark ? 'dark': 'light'}>
-        <button className={isDark ? 'Bdark': 'Blight'} type='button' onClick={() => {setIsDark(isDark ? false : true)}}><i class={isDark ? 'bi bi-sun' : 'bi bi-moon'}></i></button>      
-        <h1 className={isDark ? 'Tdark': 'Tlight'}>Cronometro</h1>
-        <button className={isDark ? 'Bdark': 'Blight'} type='button' onClick={() => { setIsStopped(isStopped ? false : true) }}>{isStopped ? 'Iniciar' : 'Parar'}</button>
-        <p className={isDark ? 'Tdark': 'Tlight'}>{counter}</p>
-        <button className={isDark ? 'Bdark': 'Blight'} type='button' onClick={handleReiniciar}>Reiniciar</button>
+      <div>
+        <button onClick={handleUsers} type='button'>Users</button>
+        <div>
+          {data && (data.map((user, i) => (
 
+            <div key={user.id} className='user'>
+              <h3>{user.id}</h3>
+              <h3>{user.name}</h3>
+              <p>{user.username}</p>
+              <p>{user.email}</p>
+            </div>
+
+          )))
+          }
+
+        </div>
       </div>
     </>
   )

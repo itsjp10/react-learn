@@ -41,37 +41,3 @@
   color: #888;
 }
 
-div{
-  padding: 50px;
-  width: 1000px;
-  height: 500px;
-}
-
-.dark{
-  background-color: #242424;
-}
-
-.light{
-  background-color: white;
-}
-
-.Bdark{
-  background-color: white;
-  color: black;
-}
-
-.Blight{
-  background-color: #242424;
-  color: white;
-  
-}
-
-.Tdark{
-  color: white;
-}
-
-.Tlight{
-  color: black;
-  
-}
-
