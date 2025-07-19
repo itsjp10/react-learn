@@ -41,42 +41,37 @@
   color: #888;
 }
 
-
-form{
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
+div{
+  padding: 50px;
+  width: 1000px;
+  height: 500px;
 }
 
-.Task{
-  display: flex;
-  flex-direction: row;
-  gap: 15px;
+.dark{
+  background-color: #242424;
 }
 
-.checkmark {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%; /* Opcional, para un círculo */
-  background-color: green; /* Opcional, color de fondo */
-  position: relative;
+.light{
+  background-color: white;
 }
 
-.checkmark::after {
-  content: '\2713'; /* Código Unicode del visto bueno */
-  color: white; /* Color del visto bueno */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 12px; /* Tamaño del visto bueno */
+.Bdark{
+  background-color: white;
+  color: black;
 }
 
-.elemento::before {
-  content: "X"; /* Usa el carácter 'X' */
-  color: red; /* Color de la X */
-  font-size: 20px; /* Tamaño de la X */
-  /* Otros estilos para la X */
+.Blight{
+  background-color: #242424;
+  color: white;
+  
 }
+
+.Tdark{
+  color: white;
+}
+
+.Tlight{
+  color: black;
+  
+}
+

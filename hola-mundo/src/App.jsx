@@ -8,9 +8,15 @@ function App() {
   const [isStopped, setIsStopped] = useState(true)
   let [counter, setCounter] = useState(0)
   const intervalRef = useRef(null)
+  const [isDark, setIsDark] = useState(false)
 
   function count() {
     setCounter(prev => prev + 1)
+  }
+
+  function handleReiniciar(){
+    setIsStopped(true)
+    setCounter(0)
   }
 
   useEffect(() => {
@@ -26,12 +32,18 @@ function App() {
     }
   }, [isStopped])
 
+  //class for moon is bi bi-moon
+  //class for sun is bi bi-sun
+
   return (
     <>
-      <div>
-        <h1>Cronometro</h1>
-        <button type='button' onClick={() => { setIsStopped(isStopped ? false : true) }}>{isStopped ? 'Iniciar' : 'Reanudar'}</button>
-        <p>{counter}</p>
+      <div className={isDark ? 'dark': 'light'}>
+        <button className={isDark ? 'Bdark': 'Blight'} type='button' onClick={() => {setIsDark(isDark ? false : true)}}><i class={isDark ? 'bi bi-sun' : 'bi bi-moon'}></i></button>      
+        <h1 className={isDark ? 'Tdark': 'Tlight'}>Cronometro</h1>
+        <button className={isDark ? 'Bdark': 'Blight'} type='button' onClick={() => { setIsStopped(isStopped ? false : true) }}>{isStopped ? 'Iniciar' : 'Parar'}</button>
+        <p className={isDark ? 'Tdark': 'Tlight'}>{counter}</p>
+        <button className={isDark ? 'Bdark': 'Blight'} type='button' onClick={handleReiniciar}>Reiniciar</button>
+
       </div>
     </>
   )
